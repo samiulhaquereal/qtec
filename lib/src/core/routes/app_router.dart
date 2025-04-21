@@ -19,10 +19,10 @@ class AppRouter {
         path: Routes.getPageNotFoundRoute(),
         builder: (context, state) => NotFoundScreen(),
       ),
-      /*GoRoute(
+      GoRoute(
         path: Routes.getDashboardRoute(),
         builder: (context, state) => const DashboardScreen(),
-      ),*/
+      ),
     ],
   );
 }

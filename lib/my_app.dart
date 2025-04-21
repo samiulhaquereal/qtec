@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
         upgrader: Upgrader(),
         child: SafeArea(
           child: MultiBlocProvider(
-            providers: [],
+            providers: [
+              BlocProvider(create: (context)=> SplashBloc(initializeApp: serviceLocator())..add(AppStarted())),
+            ],
             child: MaterialApp.router(
               title: AppEnvironment.title,
               debugShowCheckedModeBanner: AppEnvironment.debugBanner,

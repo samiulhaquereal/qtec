@@ -18,13 +18,14 @@ abstract class AppEnvironment {
           title = '${AppStrings.appName} - Dev';
           debugBanner = true;
           statusBarColor = AppColors.backgroundColor;
+          baseUrl = '${dotenv.env['DEVELOPMENT_API_BASE_URL']}';
           statusBarIconColor = Brightness.dark;
           break;
         }
       case Environment.PRODUCTION: {
         title = AppStrings.appName;
         debugBanner = false;
-        baseUrl = '${dotenv.env['BASE_URL']}';
+        baseUrl = '${dotenv.env['PRODUCTION_API_BASE_URL']}';
         statusBarColor = AppColors.backgroundColor;
         statusBarIconColor = Brightness.dark;
         break;
