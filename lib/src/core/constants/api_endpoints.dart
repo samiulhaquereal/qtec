@@ -3,7 +3,7 @@ import 'package:ecommerce/src/app_config/imports/import.dart';
 class ApiConstants {
 
   static String get baseUrl => AppEnvironment.baseUrl;
-  static String get token => EnvVariables.token;
+  static String get products => EnvVariables.products;
 
   String endpointGetData(){
     String url = '/saveDemoData';
