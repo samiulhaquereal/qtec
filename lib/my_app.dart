@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           child: MultiBlocProvider(
             providers: [
               BlocProvider(create: (context)=> SplashBloc(initializeApp: serviceLocator())..add(AppStarted())),
+              BlocProvider(create: (context) => DashboardBloc(serviceLocator())),
             ],
             child: MaterialApp.router(
               title: AppEnvironment.title,

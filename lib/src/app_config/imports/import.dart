@@ -59,3 +59,6 @@ export 'package:ecommerce/src/data/datasources/products_api_service.dart';
 export 'package:ecommerce/src/data/mappers/products_information_mapper.dart';
 export 'package:ecommerce/src/data/models/products_information_model.dart';
 export 'package:ecommerce/src/domain/entities/products_information_entities.dart';
+export 'package:ecommerce/src/presentation/blocs/dashboard_bloc/dashboard_event.dart';
+export 'package:ecommerce/src/presentation/blocs/dashboard_bloc/dashboard_state.dart';
+export 'package:ecommerce/src/domain/usecases/product_information.dart';
