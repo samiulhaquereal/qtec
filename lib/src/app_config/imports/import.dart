@@ -63,3 +63,7 @@ export 'package:ecommerce/src/domain/entities/products_information_entities.dart
 export 'package:ecommerce/src/presentation/blocs/dashboard_bloc/dashboard_event.dart';
 export 'package:ecommerce/src/presentation/blocs/dashboard_bloc/dashboard_state.dart';
 export 'package:ecommerce/src/domain/usecases/product_information.dart';
+export 'package:ecommerce/src/presentation/screens/dashboard/widget/product_item.dart';
+export 'package:ecommerce/src/presentation/screens/dashboard/widget/products_list.dart';
+export 'package:ecommerce/src/presentation/screens/dashboard/widget/retry_button.dart';
+export 'package:ecommerce/src/presentation/screens/dashboard/widget/search_bar.dart';

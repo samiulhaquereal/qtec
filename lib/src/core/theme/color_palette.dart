@@ -35,6 +35,7 @@ abstract class AppColors {
   static Color? customeGrayColor = Colors.grey[700];
   static const Color greenColor = Colors.green;
   static const Color redColor = Colors.red;
+  static const Color orangeColor = Colors.orange;
   static const Color blackColor = Colors.black;
   static const Color whiteColor = Colors.white;
   static Color errorColor = ColorParse().parseColor('bf2d26');

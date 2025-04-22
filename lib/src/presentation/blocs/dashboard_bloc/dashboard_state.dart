@@ -11,11 +11,22 @@ class DashboardInitial extends DashboardState {}
 class DashboardLoading extends DashboardState {}
 
 class DashboardLoaded extends DashboardState {
-  DashboardLoaded(this.productInfo);
+  DashboardLoaded(this.productInfo, {this.searchQuery = ''});
   final List<Product> productInfo;
+  final String searchQuery;
+
+  DashboardLoaded copyWith({
+    List<Product>? productInfo,
+    String? searchQuery,
+  }) {
+    return DashboardLoaded(
+      productInfo ?? this.productInfo,
+      searchQuery: searchQuery ?? this.searchQuery,
+    );
+  }
 
   @override
-  List<Object?> get props => [productInfo];
+  List<Object?> get props => [productInfo,searchQuery];
 }
 
 class DashboardError extends DashboardState {
