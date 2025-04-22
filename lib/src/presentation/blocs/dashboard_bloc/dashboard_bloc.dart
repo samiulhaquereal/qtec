@@ -5,7 +5,6 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<DashboardGetProductInformation>(_onGetBangladeshInformation);
   }
 
-
   final ProductsInformation _productsInformation;
 
   void _onGetBangladeshInformation(DashboardGetProductInformation event, Emitter<DashboardState> emit)async{

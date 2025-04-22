@@ -19,7 +19,7 @@ class DashboardScreen extends StatelessWidget {
   }
 
 
-  Widget _blocBuilder(context, state) {
+  Widget _blocBuilder(BuildContext context, state) {
     if (state is DashboardInitial) {
       Future.microtask(() {
         context.read<DashboardBloc>().add(DashboardGetProductInformation());
@@ -44,31 +44,28 @@ class DashboardScreen extends StatelessWidget {
           ],
         ),
       );
-    } /*else if (state is DashboardLoaded) {
-      final info = state.productInfo.title;
+    } else if (state is DashboardLoaded) {
       return SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              //const SizedBox(height: 50),
               ListView.builder(
                 shrinkWrap: true,
                 physics: ClampingScrollPhysics(),
-                itemCount: info.length,
+                itemCount: state.productInfo.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final record = info[index];  // Individual record
-                  final fields = record.fields;   // Access fields of the individual record
+                  final info = state.productInfo[index];
                   return Column(
                     children: [
                       InkWell(
-                        onTap: ()=> NavigationHelper.goToPlaceDetails(context, arguments: fields),
+                        onTap: (){},
                         child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 310,
+                          width: MediaQuery.of(context).size.width.w,
+                          height: 310.h,
                           decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
+                            color: AppColors.whiteColor,
+                            borderRadius: BorderRadius.circular(10.r),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.2),
@@ -81,52 +78,21 @@ class DashboardScreen extends StatelessWidget {
                           child: Stack(
                             children: [
                               SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                height: 170,
+                                width: MediaQuery.of(context).size.width.w,
+                                height: 170.h,
                                 child: ClipRRect(
-                                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r), topRight: Radius.circular(10.r)),
                                     child: CachedNetworkImage(
-                                      imageUrl: fields?.image ?? '',
+                                      imageUrl: info.image,
                                       placeholder: (context, url) => Center(child: SizedBox(
-                                          width:30,
-                                          height:30,
+                                          width:30.w,
+                                          height:30.h,
                                           child: CircularProgressIndicator())),
                                       errorWidget: (context, url, error) => Icon(Icons.error),
                                       fit: BoxFit.cover,
                                     )
                                 ),
                               ),
-                              Positioned(
-                                right:10,
-                                top: 10,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: LightColors.primaryColor,
-                                      borderRadius: BorderRadius.circular(15)
-                                  ),
-                                  padding: EdgeInsets.all(5),
-                                  child: Center(child: Text(fields?.country ?? 'N/A',style: TextStyle(color: Colors.white,fontSize: 12))),
-                                ),
-                              ),
-                              Positioned(
-                                top: 180,
-                                left: 10,
-                                right:10,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(fields?.title ?? 'No Title',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
-                                    SizedBox(height: 10,),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Text(fields?.description ?? 'No Description',
-                                        maxLines: 4, // Limit to 4 lines
-                                        overflow: TextOverflow.ellipsis, // Show ellipsis if overflow
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
                             ],
                           ),
                         ),
@@ -140,8 +106,7 @@ class DashboardScreen extends StatelessWidget {
           ),
         ),
       );
-    }*/
-
+    }
     return const SizedBox();
   }
 

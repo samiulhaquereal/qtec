@@ -8,10 +8,11 @@ class ProductsRepositoriesImpl implements ProductsRepositories{
 
 
   @override
-  Future<Either<Failure, Map<String, dynamic>>> productsInformation()async{
+  Future<Either<Failure, List<ProductInformationModel>>> productsInformation()async{
     try{
-      Map<String, dynamic> response = await productsApiService.getProductInformation();
-      return right(response);
+      List<dynamic> response = await productsApiService.getProductInformation();
+      List<ProductInformationModel> productInformationModels = response.map((json) => ProductInformationModel.fromJson(json)).toList();
+      return right(productInformationModels);
     }catch(e){
       return left(UnknownError(e));
     }

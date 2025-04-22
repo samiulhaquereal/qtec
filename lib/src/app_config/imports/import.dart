@@ -54,6 +54,7 @@ export 'package:ecommerce/src/presentation/blocs/splash_bloc/splash_bloc.dart';
 export 'package:ecommerce/src/presentation/navigation/navigation_helper.dart';
 export 'package:ecommerce/src/presentation/blocs/dashboard_bloc/dashboard_bloc.dart';
 export 'package:ecommerce/src/core/constants/api_endpoints.dart';
+export 'package:cached_network_image/cached_network_image.dart';
 export 'package:ecommerce/src/domain/repositories/products_repositories.dart';
 export 'package:ecommerce/src/data/datasources/products_api_service.dart';
 export 'package:ecommerce/src/data/mappers/products_information_mapper.dart';

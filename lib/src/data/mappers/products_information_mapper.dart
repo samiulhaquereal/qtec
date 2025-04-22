@@ -22,3 +22,10 @@ extension RatingModelMapper on Rating {
     );
   }
 }
+
+extension ProductInformationModelListMapper on List<ProductInformationModel> {
+  List<Product> toEntityList() {
+    return map((productInformationModel) => productInformationModel.toEntity())
+        .toList();
+  }
+}

@@ -17,14 +17,13 @@ class ProductInformationModel{
         this.rating});
 
   ProductInformationModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    price = json['price'];
-    description = json['description'];
-    category = json['category'];
-    image = json['image'];
-    rating =
-    json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
+    id = json['id'] ?? 0;
+    title = json['title'] ?? '';
+    price = (json['price'] as num?)?.toDouble() ?? 0.0;
+    description = json['description'] ?? '';
+    category = json['category'] ?? '';
+    image = json['image'] ?? '';
+    rating = json['rating'] != null ? new Rating.fromJson(json['rating']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -49,8 +48,8 @@ class Rating {
   Rating({this.rate, this.count});
 
   Rating.fromJson(Map<String, dynamic> json) {
-    rate = json['rate'];
-    count = json['count'];
+    rate = (json['rate'] as num?)?.toDouble() ?? 0.0;
+    count = (json['count'] as int?) ?? 0;
   }
 
   Map<String, dynamic> toJson() {

@@ -2,7 +2,7 @@ import 'package:ecommerce/src/app_config/imports/import.dart';
 
 
 abstract interface class ProductsApiService{
-  Future<Map<String, dynamic>> getProductInformation();
+  Future<List<dynamic>> getProductInformation();
 }
 
 class ProductsApiServiceImpl extends ProductsApiService{
@@ -11,13 +11,13 @@ class ProductsApiServiceImpl extends ProductsApiService{
   final RestApi restApi;
 
   @override
-  Future<Map<String, dynamic>> getProductInformation()async{
+  Future<List<dynamic>> getProductInformation()async{
     try{
       final response = await restApi.get(
           baseURL: ApiConstants.baseUrl,
           endpoint: ApiConstants.products,
       );
-      return response;
+      return response['response'];
     }catch(e){
       throw UnknownError(e.toString());
     }

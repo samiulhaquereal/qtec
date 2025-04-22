@@ -12,7 +12,7 @@ class DashboardLoading extends DashboardState {}
 
 class DashboardLoaded extends DashboardState {
   DashboardLoaded(this.productInfo);
-  final Product productInfo;
+  final List<Product> productInfo;
 
   @override
   List<Object?> get props => [productInfo];
