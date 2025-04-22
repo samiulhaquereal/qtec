@@ -2,7 +2,7 @@ import 'package:ecommerce/src/app_config/imports/import.dart';
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   DashboardBloc(this._productsInformation) : super(DashboardInitial()) {
-    on<DashboardGetProductInformation>(_onGetBangladeshInformation);
+    on<DashboardGetProductInformation>(_onGetProductInformation);
     on<DashboardSearchQueryChanged>(_onSearchProduct);
     on<DashboardSortOptionChanged>(_onSortOptionChanged);
   }
@@ -10,7 +10,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   final ProductsInformation _productsInformation;
   final List<Product> _allProducts = [];
 
-  void _onGetBangladeshInformation(DashboardGetProductInformation event, Emitter<DashboardState> emit)async{
+  void _onGetProductInformation(DashboardGetProductInformation event, Emitter<DashboardState> emit)async{
     emit(DashboardLoading());
     final response = await _productsInformation(NoParams());
     response.fold(
