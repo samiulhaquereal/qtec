@@ -69,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onSortPressed: ()=> showSortBottomSheet(context),
         ),
         SizedBox(height: 12.h),
-        buildProductsList(state),
+        buildProductsList(state,context),
       ],
     );
   }

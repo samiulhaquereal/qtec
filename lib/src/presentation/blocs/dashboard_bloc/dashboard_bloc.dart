@@ -5,15 +5,35 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<DashboardGetProductInformation>(_onGetProductInformation);
     on<DashboardSearchQueryChanged>(_onSearchProduct);
     on<DashboardSortOptionChanged>(_onSortOptionChanged);
+    on<DashboardLoadMoreProducts>(_onLoadMoreProducts);
   }
 
   final ProductsInformation _productsInformation;
   final ConnectivityService _connectivityService;
   final List<Product> _allProducts = [];
+  final List<Product> _currentLoadedProducts = [];
+  static const int _productsPerPage = 10;
+
+  void _onLoadMoreProducts(DashboardLoadMoreProducts event, Emitter<DashboardState> emit) {
+    final currentState = state;
+    if (currentState is DashboardLoaded) {
+      final nextItems = _getNextProducts();
+      if (nextItems.isEmpty) return;
+
+      _currentLoadedProducts.addAll(nextItems);
+      emit(currentState.copyWith(productInfo: List.from(_currentLoadedProducts)));
+    }
+  }
+
+  List<Product> _getNextProducts() {
+    final startIndex = _currentLoadedProducts.length;
+    final endIndex = (startIndex + _productsPerPage ).clamp(0, _allProducts.length);
+    if (startIndex >= endIndex) return [];
+    return _allProducts.sublist(startIndex, endIndex as int?);
+  }
 
   void _onGetProductInformation(DashboardGetProductInformation event, Emitter<DashboardState> emit)async{
     final isConnected = await _connectivityService.isConnected();
-    print(isConnected);
 
     if (!isConnected) {
       final cachedProducts = await HiveCache.getData<List<dynamic>>(

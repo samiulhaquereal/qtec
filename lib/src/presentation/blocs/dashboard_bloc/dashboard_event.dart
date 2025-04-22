@@ -7,6 +7,8 @@ class DashboardEvent extends Equatable{
 
 class DashboardGetProductInformation extends DashboardEvent{}
 
+class DashboardLoadMoreProducts extends DashboardEvent {}
+
 class DashboardSearchQueryChanged extends DashboardEvent {
   final String query;
   DashboardSearchQueryChanged(this.query);
