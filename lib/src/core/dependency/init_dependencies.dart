@@ -1,5 +1,4 @@
 import 'package:ecommerce/src/app_config/imports/import.dart';
-import 'package:ecommerce/src/data/repositories/products_repositories_impl.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -18,5 +17,7 @@ void initDependencies() {
         () => ProductsRepositoriesImpl(productsApiService: serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => ProductsInformation(productsRepositories: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => Connectivity());
+  serviceLocator.registerLazySingleton(() => ConnectivityService(serviceLocator()));
 
 }

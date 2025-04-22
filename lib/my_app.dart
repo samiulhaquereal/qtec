@@ -19,9 +19,12 @@ class MyApp extends StatelessWidget {
           child: MultiBlocProvider(
             providers: [
               BlocProvider(create: (context)=> SplashBloc(initializeApp: serviceLocator())..add(AppStarted())),
-              BlocProvider(create: (context) => DashboardBloc(serviceLocator())),
+              BlocProvider(create: (context) => DashboardBloc(
+                serviceLocator<ProductsInformation>(),
+                serviceLocator<ConnectivityService>())),
             ],
             child: MaterialApp.router(
+              scaffoldMessengerKey: SnackBarWidget().scaffoldMessengerKey,
               title: AppEnvironment.title,
               debugShowCheckedModeBanner: AppEnvironment.debugBanner,
               theme: ThemeData(

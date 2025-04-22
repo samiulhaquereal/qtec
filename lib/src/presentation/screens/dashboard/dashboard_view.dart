@@ -11,6 +11,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final TextEditingController searchController = TextEditingController();
 
+  /*@override
+  void initState() {
+    super.initState();
+    serviceLocator<ConnectivityService>().onConnectivityChanged.listen((isConnected) {
+      if (!isConnected) {
+        serviceLocator<SnackBarWidget>().showSnackBar(message: 'No internet connection',backgroundColor: AppColors.redColor);
+      }
+    });
+  }*/
+
   @override
   void dispose() {
     searchController.dispose();

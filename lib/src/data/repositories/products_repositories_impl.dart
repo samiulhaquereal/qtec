@@ -1,5 +1,4 @@
 import 'package:ecommerce/src/app_config/imports/import.dart';
-import 'package:ecommerce/src/data/cache/hive_cache.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ProductsRepositoriesImpl implements ProductsRepositories{

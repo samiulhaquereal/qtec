@@ -1,16 +1,36 @@
 import 'package:ecommerce/src/app_config/imports/import.dart';
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
-  DashboardBloc(this._productsInformation) : super(DashboardInitial()) {
+  DashboardBloc(this._productsInformation,this._connectivityService) : super(DashboardInitial()) {
     on<DashboardGetProductInformation>(_onGetProductInformation);
     on<DashboardSearchQueryChanged>(_onSearchProduct);
     on<DashboardSortOptionChanged>(_onSortOptionChanged);
   }
 
   final ProductsInformation _productsInformation;
+  final ConnectivityService _connectivityService;
   final List<Product> _allProducts = [];
 
   void _onGetProductInformation(DashboardGetProductInformation event, Emitter<DashboardState> emit)async{
+    final isConnected = await _connectivityService.isConnected();
+    print(isConnected);
+
+    if (!isConnected) {
+      final cachedProducts = await HiveCache.getData<List<dynamic>>(
+        boxName: 'productInformation',
+        key: 'product_list',
+      );
+      if (cachedProducts != null) {
+        /*_allProducts.clear();
+        List<ProductInformationModel> productInformationModels = cachedProducts.map((data) => ProductInformationModel.fromJson(data)).toList();
+        _allProducts.addAll(cachedProducts.cast<Product>());
+        emit(DashboardLoaded(_allProducts));*/
+      } else {
+        emit(DashboardError("No cached data available"));
+      }
+      return;
+    }
+
     emit(DashboardLoading());
     final response = await _productsInformation(NoParams());
     response.fold(

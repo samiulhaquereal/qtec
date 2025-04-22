@@ -13,14 +13,14 @@ class HiveCache {
     }
   }
 
-  static Future<T?> getData<T>({required String boxName, required String key}) async {
-    var box = await _getBox<T>(boxName);
-    return box.get(key);
-  }
-
   static Future<void> setData<T>({required String boxName, required String key, required T value}) async {
     var box = await _getBox<T>(boxName);
     await box.put(key, value);
+  }
+
+  static Future<T?> getData<T>({required String boxName, required String key}) async {
+    var box = await _getBox<T>(boxName);
+    return box.get(key);
   }
 
   static Future<void> deleteData<T>({required String boxName, required String key}) async {
