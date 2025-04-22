@@ -51,15 +51,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Column(
       children: [
         SizedBox(height: 12.h),
-        buildSearchBar(
+        DashboardSearchBar(
             controller: searchController,
             onChanged: (value) {
               context.read<DashboardBloc>().add(DashboardSearchQueryChanged(value));
             },
+            onSortPressed: ()=> showSortBottomSheet(context),
         ),
         SizedBox(height: 12.h),
         buildProductsList(state),
       ],
     );
   }
+
 }

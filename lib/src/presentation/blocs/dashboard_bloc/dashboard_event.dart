@@ -14,3 +14,11 @@ class DashboardSearchQueryChanged extends DashboardEvent {
   @override
   List<Object?> get props => [query];
 }
+
+class DashboardSortOptionChanged extends DashboardEvent {
+  final SortOption sortOption;
+  DashboardSortOptionChanged(this.sortOption);
+
+  @override
+  List<Object?> get props => [sortOption];
+}

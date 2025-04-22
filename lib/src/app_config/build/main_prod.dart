@@ -5,6 +5,10 @@ void main()async{
   await dotenv.load(fileName: ".env");
   AppEnvironment.setupEnv(Environment.PRODUCTION);
   initDependencies();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProductInformationModelAdapter());
+  Hive.registerAdapter(RatingAdapter());
+  await Hive.openBox<List>('productInformation');
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: AppEnvironment.statusBarColor,
     statusBarIconBrightness: AppEnvironment.statusBarIconColor,

@@ -4,6 +4,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   DashboardBloc(this._productsInformation) : super(DashboardInitial()) {
     on<DashboardGetProductInformation>(_onGetBangladeshInformation);
     on<DashboardSearchQueryChanged>(_onSearchProduct);
+    on<DashboardSortOptionChanged>(_onSortOptionChanged);
   }
 
   final ProductsInformation _productsInformation;
@@ -28,6 +29,23 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     }).toList();
 
     emit(DashboardLoaded(filteredProducts, searchQuery: event.query));
+  }
+
+  void _onSortOptionChanged(DashboardSortOptionChanged event, Emitter<DashboardState> emit) {
+    final currentState = state;
+    if (currentState is DashboardLoaded) {
+      List<Product> sortedProducts = List.from(currentState.productInfo);
+
+      if (event.sortOption == SortOption.priceLowToHigh) {
+        sortedProducts.sort((a, b) => a.price.compareTo(b.price));
+      } else if (event.sortOption == SortOption.priceHighToLow) {
+        sortedProducts.sort((b, a) => a.price.compareTo(b.price));
+      } else if (event.sortOption == SortOption.ratingHighToLow) {
+        sortedProducts.sort((b, a) => a.rating.rate.compareTo(b.rating.rate));
+      }
+
+      emit(currentState.copyWith(productInfo: sortedProducts));
+    }
   }
 
 
