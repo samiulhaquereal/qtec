@@ -1,4 +1,5 @@
 import 'package:ecommerce/src/app_config/imports/import.dart';
+import 'package:ecommerce/src/data/cache/hive_cache.dart';
 import 'package:fpdart/fpdart.dart';
 
 class ProductsRepositoriesImpl implements ProductsRepositories{
@@ -9,12 +10,15 @@ class ProductsRepositoriesImpl implements ProductsRepositories{
 
   @override
   Future<Either<Failure, List<ProductInformationModel>>> productsInformation()async{
-    final box = Hive.box<List>('productInformation');
     try{
       List<dynamic> response = await productsApiService.getProductInformation();
       List<ProductInformationModel> productInformationModels = response.map((json) => ProductInformationModel.fromJson(json)).toList();
-      await box.clear();
-      await box.put('product_list', productInformationModels);
+      await HiveCache.clearBox<List>(boxName: 'productInformation');
+      await HiveCache.setData<List>(
+        boxName: 'productInformation',
+        key: 'product_list',
+        value: productInformationModels,
+      );
       return right(productInformationModels);
     }catch(e){
       return left(UnknownError(e));

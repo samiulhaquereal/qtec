@@ -47,6 +47,7 @@ export 'package:ecommerce/src/domain/usecases/initialize_app.dart';
 export 'package:ecommerce/src/presentation/common/widgets/status_bar_color_widget.dart';
 export 'package:ecommerce/my_app.dart';
 export 'package:hive/hive.dart';
+export 'package:ecommerce/src/core/services/hive_manager.dart';
 export 'package:hive_flutter/adapters.dart';
 export 'package:ecommerce/src/presentation/screens/dashboard/widget/bottom_sheet.dart';
 export 'package:ecommerce/src/presentation/common/widgets/page_not_found_widget.dart';

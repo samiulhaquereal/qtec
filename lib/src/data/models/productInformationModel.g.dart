@@ -1,10 +1,4 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 part of 'productInformationModel.dart';
-
-// **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
 
 class ProductInformationModelAdapter extends TypeAdapter<ProductInformationModel> {
   @override
