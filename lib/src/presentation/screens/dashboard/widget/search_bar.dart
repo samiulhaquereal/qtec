@@ -1,7 +1,9 @@
-import 'dart:developer';
 import 'package:ecommerce/src/app_config/imports/import.dart';
 
-Widget buildSearchBar() {
+Widget buildSearchBar({
+  required TextEditingController controller,
+  required ValueChanged<String> onChanged,
+}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 12.w),
     child: Container(
@@ -18,15 +20,13 @@ Widget buildSearchBar() {
         ],
       ),
       child: TextField(
-        controller: TextEditingController(),
+        controller: controller,
         decoration: InputDecoration(
           hintText: "Search Anything...",
           border: InputBorder.none,
           icon: Icon(Icons.search, color: AppColors.grayColor),
         ),
-        onChanged: (query) {
-          log('User is typing: $query');
-        },
+        onChanged: onChanged,
       ),
     ),
   );

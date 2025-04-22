@@ -121,7 +121,7 @@ Widget buildProductItem(Product info, int index) {
                   SizedBox(width: 2.w),
                   Text(
                     '(${info.rating.count })',
-                    style: TextStyle(fontSize: 10.sp, color: Colors.grey),
+                    style: TextStyle(fontSize: 10.sp, color: AppColors.grayColor),
                   ),
                 ],
               ),

@@ -1,7 +1,21 @@
 import 'package:ecommerce/src/app_config/imports/import.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +30,6 @@ class DashboardScreen extends StatelessWidget {
   Widget _blocListener(context, state) {
     return const SizedBox();
   }
-
 
   Widget _blocBuilder(BuildContext context, state) {
     if (state is DashboardInitial) {
@@ -38,7 +51,12 @@ class DashboardScreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 12.h),
-        buildSearchBar(),
+        buildSearchBar(
+            controller: searchController,
+            onChanged: (value) {
+              context.read<DashboardBloc>().add(DashboardSearchQueryChanged(value));
+            },
+        ),
         SizedBox(height: 12.h),
         buildProductsList(state),
       ],
