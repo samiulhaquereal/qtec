@@ -6,6 +6,7 @@ void initDependencies() {
   serviceLocator.registerLazySingleton(() => InitializeApp());
   serviceLocator.registerLazySingleton(() => Connectivity());
   serviceLocator.registerLazySingleton(() => ConnectivityService(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SnackBarWidget());
   serviceLocator.registerSingleton<ApiResponseHandler>(ApiResponseHandler());
   serviceLocator.registerSingleton<ApiErrorHandler>(ApiErrorHandler());
   serviceLocator.registerFactory(() => RestApi(

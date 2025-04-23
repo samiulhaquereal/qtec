@@ -10,21 +10,30 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
 
   final TextEditingController searchController = TextEditingController();
+  final ConnectivityService connectivityService = ConnectivityService(Connectivity());
 
-  /*@override
+  @override
   void initState() {
     super.initState();
-    serviceLocator<ConnectivityService>().onConnectivityChanged.listen((isConnected) {
+    _checkInternetConnection();
+    connectivityService.onConnectivityChanged.listen((isConnected) {
       if (!isConnected) {
         serviceLocator<SnackBarWidget>().showSnackBar(message: 'No internet connection',backgroundColor: AppColors.redColor);
       }
     });
-  }*/
+  }
 
   @override
   void dispose() {
     searchController.dispose();
     super.dispose();
+  }
+
+  Future<void> _checkInternetConnection() async {
+    final isConnected = await connectivityService.isConnected();
+    if (!isConnected) {
+      serviceLocator<SnackBarWidget>().showSnackBar(message: 'No internet connection',backgroundColor: AppColors.redColor);
+    }
   }
 
   @override
