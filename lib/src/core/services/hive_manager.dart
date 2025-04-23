@@ -10,8 +10,6 @@ class HiveManager {
   }
   HiveManager._internal();
 
-  static late Box<List> productBox;
-
   static Future<void> initHive() async {
     if (_isInitialized) return;
 
@@ -20,8 +18,6 @@ class HiveManager {
 
       Hive.registerAdapter(ProductInformationModelAdapter());
       Hive.registerAdapter(RatingAdapter());
-
-      productBox = await Hive.openBox<List>('productInformation');
 
       _isInitialized = true;
       log('Hive initialized and product box opened.');

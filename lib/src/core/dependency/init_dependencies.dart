@@ -4,6 +4,8 @@ final serviceLocator = GetIt.instance;
 
 void initDependencies() {
   serviceLocator.registerLazySingleton(() => InitializeApp());
+  serviceLocator.registerLazySingleton(() => Connectivity());
+  serviceLocator.registerLazySingleton(() => ConnectivityService(serviceLocator()));
   serviceLocator.registerSingleton<ApiResponseHandler>(ApiResponseHandler());
   serviceLocator.registerSingleton<ApiErrorHandler>(ApiErrorHandler());
   serviceLocator.registerFactory(() => RestApi(
@@ -16,8 +18,10 @@ void initDependencies() {
   serviceLocator.registerLazySingleton<ProductsRepositories>(
         () => ProductsRepositoriesImpl(productsApiService: serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => ProductsInformation(productsRepositories: serviceLocator()));
-  serviceLocator.registerLazySingleton(() => Connectivity());
-  serviceLocator.registerLazySingleton(() => ConnectivityService(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ProductsInformation(
+      productsRepositories: serviceLocator(),
+      connectivityService: serviceLocator()
+  ));
+
 
 }

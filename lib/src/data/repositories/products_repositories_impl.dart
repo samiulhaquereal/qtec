@@ -12,12 +12,6 @@ class ProductsRepositoriesImpl implements ProductsRepositories{
     try{
       List<dynamic> response = await productsApiService.getProductInformation();
       List<ProductInformationModel> productInformationModels = response.map((json) => ProductInformationModel.fromJson(json)).toList();
-      await HiveCache.clearBox<List>(boxName: 'productInformation');
-      await HiveCache.setData<List>(
-        boxName: 'productInformation',
-        key: 'product_list',
-        value: productInformationModels,
-      );
       return right(productInformationModels);
     }catch(e){
       return left(UnknownError(e));
